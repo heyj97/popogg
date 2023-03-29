@@ -2,16 +2,43 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
     <title>popo.gg</title>
 </head>
 <body>
-    <input type="text" id="summonerName" placeholder="소환사명을 입력해주세요.">
-    <button type="submit" id="search">검색</button>
+    <header>
+        <h1><img src="./src/logo.png"></h1>
+    </header>
+    <div class="container">
+    <!--<article class="rotation-of-week">
+        <div class = rotation>
+            
+                금주 챔피언 로테이션 확인 (16개 챔피언)
+                사용 API: CHAMPION-V3
+            
+            금주의 챔피언 로테이션
 
-    
-    <div id="result">
-    </div>
+        </div>
+    </article>-->
+    <article class="user-search-div">
+        <input type="text" id="summonerName" placeholder="소환사명을 입력해주세요.">
+        <button type="submit" id="search"><img id="btnImg" src="./src/searchBtn.png"></button>
+    </article>
+    <article class="user-info-div">
+        <div class="now-play-game">
+            <!--
+                현재 진행중인 게임
+                사용 API: SPECTATOR-V4
+            -->
+            <!-- 현재 진행중인 게임 -->
+        </div>
 
+    </article>
+</div>
+
+<footer>
+
+</footer>
 <script type="module" src="./index.js"></script>
 </body>
 </html>

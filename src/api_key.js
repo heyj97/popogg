@@ -1,5 +1,5 @@
 const api_key = {
-    keyValue : 'token key'
+    keyValue : ''
 }
 
 export default api_key;
