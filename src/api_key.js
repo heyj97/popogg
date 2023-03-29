@@ -1,5 +1,5 @@
 const api_key = {
-    keyValue : 'Riot API Token'
+    keyValue : 'token key'
 }
 
 export default api_key;
