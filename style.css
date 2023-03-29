@@ -43,8 +43,12 @@ article.user-search-div {
     border-radius: 30px;
 
     margin-top: 20px;
+    border: #9869e8 2px solid;
 }
 
+article.user-info-div {
+    display:inline-block
+}
 
 article.user-search-div #summonerName{
     background-color: white;
@@ -63,7 +67,6 @@ article.user-search-div #summonerName:focus{
     outline: none;
 }
 
-
 article.user-search-div #search{
     background-color: white;
     margin-top: 5px;
@@ -80,20 +83,31 @@ article.user-search-div #btnImg{
 }
 
 .profile {
-    margin-top: 50px;
+    margin-top: 20px;
     display: inline-block;
-    border: #636363 1px solid;
-    padding: 10px 10px 15px 10px;
-    border-radius: 15px;
+    border: #9869e8 1px solid;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    background-color: #303030;
 }
 
-.profile img {
+.tierIcon {
     height: 30px;
     border:#636363 1px solid;
     background-color: #303030;
-    border-radius: 20px;
+    border-radius: 10px;
     float: left;
     margin: 10px 0 0 10px;
+}
+
+.profile #summonerIcon {
+    height: 40px;
+    display: inline;
+    background-color: #212121;
+    border: #636363 1px solid;
+    border-radius: 5px;
+    float: left;
+    margin-left: 10px;
 }
 
 .profile-rank {
@@ -103,22 +117,41 @@ article.user-search-div #btnImg{
     padding-top: 13px;
     color:white;
     font-weight: 200;
+    background-color: #303030;
 }
 
 .profile-summonerName{
-    font-size: 25px;
+    float: left;
+    font-size: 20px;
     font-weight: 400;
-    display: block;
+    display: inline;
     text-align: left;
-    padding: 0 0 10px 20px;
+    padding: 5px 0 0 10px;
+    background-color: #303030;
+    letter-spacing: 2px;
+}
+
+code {
+    font-size: 10px;
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+    background-color: #636363;
+    letter-spacing: 0;
 }
 
 .rankBoard {
+    clear: both;
     width: 250px;
     height: 42px;
     border-radius: 15px;
+    background-color: #303030;
+}
+
+.champMastery {
+    clear: both;
 }
 
 footer {
     height: 300px;
 }
+
