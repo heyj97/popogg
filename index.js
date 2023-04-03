@@ -1,5 +1,11 @@
 const submitBtn = document.querySelector("#search");
-import userSearch from "./src/userSearch.js";
+const inputBox = document.querySelector('#summonerName');
+import summonerSearch from "./src/summonerInfo.js";
 
 
-submitBtn.addEventListener("click", userSearch)
+submitBtn.addEventListener("click", summonerSearch)
+inputBox.addEventListener("keypress", (e) => {
+    if (e.code === 'Enter') {
+        summonerSearch()
+    }
+})
