@@ -6,7 +6,8 @@ const header = document.querySelector("header");
 
 function summonerSearch(e) {
     // e.preventDefault()
-    header.style.marginTop = "100px"; 
+    resultBody.className += ' listViewer'
+    header.style.marginTop = "60px"; 
     /** 소환사 기본 정보 */
     let userInfo = {
         summonerEncryptedId : "",
@@ -120,7 +121,7 @@ function summonerSearch(e) {
                                                     <ul>
                                                         <li><h3>${masteryInfo.m1champName}</h3></li>
                                                         <li><h4>숙련레벨 ${masteryInfo.most1Level}</h4></li>
-                                                        <li><h4>숙련점수 ${masteryInfo.most1Points}점</h4></li>
+                                                        <li><h4>숙련점수 ${masteryInfo.most1Points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}점</h4></li>
                                                     </ul>
                                                 </div>
                                                 <div class="mostChamp">
@@ -128,7 +129,7 @@ function summonerSearch(e) {
                                                     <ul>
                                                         <li><h3>${masteryInfo.m2champName}</h3></li>
                                                         <li><h4>숙련레벨 ${masteryInfo.most2Level}</h4></li>
-                                                        <li><h4>숙련점수 ${masteryInfo.most2Points}점</h4></li>
+                                                        <li><h4>숙련점수 ${masteryInfo.most2Points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}점</h4></li>
                                                     </ul>
                                                 </div>
                                                 <div class="mostChamp">
@@ -136,7 +137,7 @@ function summonerSearch(e) {
                                                     <ul>
                                                         <li><h3>${masteryInfo.m3champName}</h3></li>
                                                         <li><h4>숙련레벨 ${masteryInfo.most3Level}</h4></li>
-                                                        <li><h4>숙련점수 ${masteryInfo.most3Points}점</h4></li>
+                                                        <li><h4>숙련점수 ${masteryInfo.most3Points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}점</h4></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -148,7 +149,7 @@ function summonerSearch(e) {
                                                 <ul>
                                                     <li><h3>솔로랭크</h3></li>
                                                     <li><h4>${rankInfo.rankSoloTier} ${rankInfo.rankSoloRank}</h4> <h5>${rankInfo.rankSoloPoints}점</h5></li>
-                                                    <li><h5>${rankInfo.rankSoloWin}승 ${rankInfo.rankSoloLose}패 (${Math.floor(rankInfo.rankSoloWin / (rankInfo.rankSoloWin + rankInfo.rankSoloLose))}%)</h5></li>
+                                                    <li><h5>${rankInfo.rankSoloWin}승 ${rankInfo.rankSoloLose}패 (${(100 * (rankInfo.rankSoloWin / (rankInfo.rankSoloWin + rankInfo.rankSoloLose))).toFixed(2)}%)</h5></li>
                                                 </ul>
                                             </div>
                                             <div class="rankBox">
@@ -156,12 +157,13 @@ function summonerSearch(e) {
                                                 <ul>
                                                     <li><h3>자유랭크</h3></li>
                                                     <li><h4>${rankInfo.rankFlexTier} ${rankInfo.rankFlexRank}</h4> <h5>${rankInfo.rankFlexPoints}점</h5></li>
-                                                    <li><h5>${rankInfo.rankFlexWin}승 ${rankInfo.rankFlexLose}패 (${Math.floor(rankInfo.rankFlexWin / (rankInfo.rankFlexWin + rankInfo.rankFlexLose))}%)</h5></li>
+                                                    <li><h5>${rankInfo.rankFlexWin}승 ${rankInfo.rankFlexLose}패 (${(100 * (rankInfo.rankFlexWin / (rankInfo.rankFlexWin + rankInfo.rankFlexLose))).toFixed(2)}%)</h5></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     `
+                                resultBody.scrollTop = resultBody.scrollHeight;
                             })
                         })
                     })
