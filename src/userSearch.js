@@ -20,8 +20,9 @@ const summonerData = {
         m2champEng: "", m2champName : "", most2Id : 0, most2Level : 0, most2Points : 0,
         m3champEng: "", m3champName : "", most3Id : 0, most3Level : 0, most3Points : 0
     }
-    }
+}
 
+/** 유저 기본정보 조회 (필수) */
 async function userDataRequest(username) {
     console.log('user data request start')
     return new Promise((resolve)=> {
@@ -41,6 +42,7 @@ async function userDataRequest(username) {
     });
 }
 
+/** 유저 기본정보 기반 랭크게임 정보 조회 */
 async function rankDataRequest(encryptedId) {
     console.log('rank data request start')
     return new Promise(resolve => {
@@ -66,6 +68,7 @@ async function rankDataRequest(encryptedId) {
                     summonerData.rankData.rankSoloWin = data[0].wins;
                     summonerData.rankData.rankSoloLose = data[0].losses;
                 } else {
+                    console.log('hi')
                     summonerData.rankData.rankFlexTier = data[0].tier;
                     summonerData.rankData.rankFlexRank = data[0].rank;
                     summonerData.rankData.rankFlexPoints = data[0].leaguePoints;
@@ -79,6 +82,7 @@ async function rankDataRequest(encryptedId) {
     });
 }
 
+/** 유저 기본정보 기반 숙련도 상위 3개 챔피언 정보 조회 */
 async function masteryDataRequest (encryptedId) {
     console.log('mastery data request start')
     return new Promise(resolve => {
@@ -121,6 +125,7 @@ async function masteryDataRequest (encryptedId) {
     })
 }
 
+/** 조회한 유저정보 기반으로 HTML 삽입 */
 async function userDataInsert() {
     resultBody.className += ' listViewer';
     header.style.marginTop = "60px";
@@ -186,11 +191,52 @@ async function userDataInsert() {
     return
 }
 
+/** 유저정보 초기화 */
+async function userDataReset() {
+    summonerData.userData.summonerEncryptedId = "";
+    summonerData.userData.summonerIcon = "";
+    summonerData.userData.summonerLevel = 0;
+    summonerData.userData.summonerName = "";
+
+    summonerData.rankData.rankFlexTier = "UNRANKED";
+    summonerData.rankData.rankFlexRank = "";
+    summonerData.rankData.rankFlexPoints = 0;
+    summonerData.rankData.rankFlexWin = 0;
+    summonerData.rankData.rankFlexLose = 0;
+    summonerData.rankData.rankSoloTier = "UNRANKED";
+    summonerData.rankData.rankSoloRank = "";
+    summonerData.rankData.rankSoloPoints = 0;
+    summonerData.rankData.rankSoloWin = 0;
+    summonerData.rankData.rankSoloLose = 0;
+
+    summonerData.masteryData.m1champEng = "";
+    summonerData.masteryData.m1champName = "";
+    summonerData.masteryData.most1Id = 0;
+    summonerData.masteryData.most1Level = 0;
+    summonerData.masteryData.most1Points = 0;
+    
+    summonerData.masteryData.m2champEng = "";
+    summonerData.masteryData.m2champName = "";
+    summonerData.masteryData.most2Id = 0;
+    summonerData.masteryData.most2Level = 0;
+    summonerData.masteryData.most2Points = 0;
+
+    summonerData.masteryData.m3champEng = "";
+    summonerData.masteryData.m3champName = "";
+    summonerData.masteryData.most3Id = 0;
+    summonerData.masteryData.most3Level = 0;
+    summonerData.masteryData.most3Points = 0;
+
+    return
+}
+
+/** 유저정보조회 -> 유저정보기반 랭크게임정보 조회 -> 유저정보기반 숙련도 상위 3개 챔피언 조회 -> HTML삽입 -> 유저정보 초기화 순으로 진행  */
 async function searchAsyncFunctions(userInput) {
-    await userDataRequest(userInput); // input value 넣기
+    await userDataRequest(userInput);
     await rankDataRequest(summonerData.userData.summonerEncryptedId);
     await masteryDataRequest(summonerData.userData.summonerEncryptedId);
     await userDataInsert();
+    await userDataReset();
 }
 
 export { searchAsyncFunctions, summonerData };
