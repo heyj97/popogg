@@ -6,8 +6,7 @@ const header = document.querySelector("header");
 
 function summonerSearch(e) {
     // e.preventDefault()
-    resultBody.className += ' listViewer'
-    header.style.marginTop = "60px"; 
+    
     /** 소환사 기본 정보 */
     let userInfo = {
         summonerEncryptedId : "",
@@ -38,6 +37,8 @@ function summonerSearch(e) {
         // 200
         .then(res => res.json())
         .then(data => {
+                resultBody.className += ' listViewer';
+                header.style.marginTop = "60px"; 
                 userInfo.summonerEncryptedId = data.id;
                 userInfo.summonerIcon = data.profileIconId;
                 userInfo.summonerLevel = data.summonerLevel;
