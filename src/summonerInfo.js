@@ -13,7 +13,7 @@ function summonerSearch(e) {
         summonerEncryptedId : "",
         summonerIcon : "",
         summonerLevel : 0,
-        summonerName : inputValue.value
+        summonerName : ""
     };
 
     /** 소환사 랭크 정보*/
@@ -29,7 +29,7 @@ function summonerSearch(e) {
         m3champEng: "", m3champName : "", most3Id : 0, most3Level : 0, most3Points : 0
     };
 
-    fetch('https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + userInfo.summonerName + '?api_key=' + api_key.keyValue) // 소환사 정보 조회 API
+    fetch('https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + inputValue.value + '?api_key=' + api_key.keyValue) // 소환사 정보 조회 API
         // 400
         .catch(error => {
             alert('존재하지 않는 소환사입니다!')
@@ -41,6 +41,7 @@ function summonerSearch(e) {
                 userInfo.summonerEncryptedId = data.id;
                 userInfo.summonerIcon = data.profileIconId;
                 userInfo.summonerLevel = data.summonerLevel;
+                userInfo.summonerName = data.name;
 
                 fetch('https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/' + userInfo.summonerEncryptedId + '?api_key=' + api_key.keyValue) // 랭크정보 조회 API
                     .then(res => res.json())
