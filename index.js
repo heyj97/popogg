@@ -1,11 +1,13 @@
 const submitBtn = document.querySelector("#search");
 const inputBox = document.querySelector('#summonerName');
-import summonerSearch from "./src/summonerInfo.js";
+import { searchAsyncFunctions, summonerData } from "./src/userSearch.js";
 
 
-submitBtn.addEventListener("click", summonerSearch)
+submitBtn.addEventListener("click", (e) => {
+    searchAsyncFunctions(inputBox.value);
+})
 inputBox.addEventListener("keypress", (e) => {
-    if (e.code === 'Enter') {
-        summonerSearch()
+    if (e.code === 'Enter' || e.which === 13) {
+        searchAsyncFunctions(inputBox.value);
     }
 })
