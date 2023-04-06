@@ -24,7 +24,6 @@ const summonerData = {
 
 /** 유저 기본정보 조회 (필수) */
 async function userDataRequest(username) {
-    console.log('user data request start')
     return new Promise((resolve)=> {
         fetch(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${username}?api_key=${api_key.keyValue}`)
             .then(res => res.json())
@@ -44,7 +43,6 @@ async function userDataRequest(username) {
 
 /** 유저 기본정보 기반 랭크게임 정보 조회 */
 async function rankDataRequest(encryptedId) {
-    console.log('rank data request start')
     return new Promise(resolve => {
         fetch(`https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/${encryptedId}?api_key=${api_key.keyValue}`)
             .then(res => res.json())
@@ -67,13 +65,12 @@ async function rankDataRequest(encryptedId) {
                     summonerData.rankData.rankSoloPoints = data[0].leaguePoints;
                     summonerData.rankData.rankSoloWin = data[0].wins;
                     summonerData.rankData.rankSoloLose = data[0].losses;
-                } else {
-                    console.log('hi')
-                    summonerData.rankData.rankFlexTier = data[0].tier;
-                    summonerData.rankData.rankFlexRank = data[0].rank;
-                    summonerData.rankData.rankFlexPoints = data[0].leaguePoints;
-                    summonerData.rankData.rankFlexWin = data[0].wins;
-                    summonerData.rankData.rankFlexLose = data[0].losses;
+                } else if (data.length === 1 && data[0].queueType === "RANKED_FLEX_5x5") {
+                    summonerData.rankData.rankSoloTier = data[0].tier;
+                    summonerData.rankData.rankSoloRank = data[0].rank;
+                    summonerData.rankData.rankSoloPoints = data[0].leaguePoints;
+                    summonerData.rankData.rankSoloWin = data[0].wins;
+                    summonerData.rankData.rankSoloLose = data[0].losses;
                 }
 
 
@@ -84,7 +81,6 @@ async function rankDataRequest(encryptedId) {
 
 /** 유저 기본정보 기반 숙련도 상위 3개 챔피언 정보 조회 */
 async function masteryDataRequest (encryptedId) {
-    console.log('mastery data request start')
     return new Promise(resolve => {
         fetch(`https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${encryptedId}?api_key=${api_key.keyValue}`)
             .then(res => res.json())
